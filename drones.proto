@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+service Greeter {
+    // Registers the drone to ground-station
+    rpc register (RegistrationRequest) returns (RegistrationResponse) {} //Unary
+    rpc listen_waypoint(WaypointRequest) returns (WaypointResponse) {} //Unary
+    rpc send_position(stream PositionRequest) returns (PositionResponse) {} //Client streaming
+
+}
+
+message Empty {}
+
+message RegistrationRequest {
+    int32 name = 1;
+}
+
+message RegistrationResponse {
+    int32 id = 1;
+}
+
+message WaypointRequest {
+    int32 id = 1;
+}
+
+message WaypointResponse {
+    float latitude = 1;
+    float longitude = 2;
+
+}
+
+message PositionRequest {
+    repeated float position = 1;
+
+}
+
+message PositionResponse {
+    string status = 1;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
